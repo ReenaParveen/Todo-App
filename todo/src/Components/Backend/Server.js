@@ -37,6 +37,26 @@ app.post('/', async (req, res) => {
   res.json(newTask);
 });
 
+// Update Task Route (PUT request)
+app.put('/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const updatedTask = await Task.findByIdAndUpdate(id, req.body, {
+      new: true, // return the updated task
+    });
+
+    if (!updatedTask) {
+      return res.status(404).json({ message: 'Task not found' });
+    }
+
+    res.json(updatedTask);
+  } catch (error) {
+    res.status(500).json({ message: 'Error updating task', error });
+  }
+});
+
+// Delete Task Route
 app.delete('/:id', async (req, res) => {
   const { id } = req.params;
 

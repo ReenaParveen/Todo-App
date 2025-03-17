@@ -7,6 +7,8 @@
 
 .app_header > form {
     width: 40%;
+    margin-top: 50px;
+    margin-bottom: 30px;
 }
 
 .task_input{
